@@ -1,4 +1,4 @@
-import styles from './TodoItem.module.css';
+import styles from '../../assets/css/TodoItem.module.css';
 import cn from 'classnames';
 
 function TodoItem({ data }) {

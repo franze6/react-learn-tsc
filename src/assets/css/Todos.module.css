@@ -1,0 +1,13 @@
+.todos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}

@@ -1,6 +1,7 @@
 import TodoList from "./TodoList";
-import styles from './Todos.module.css'
+import styles from '../../assets/css/Todos.module.css'
 import {nanoid} from 'nanoid';
+import Button from "./Button";
 
 function Todos() {
 
@@ -27,9 +28,18 @@ function Todos() {
         },
     ];
 
+    const addTodo = () => {
+        alert('Мы пока не умеем добавлять!');
+    }
+
     return (
         <div className={styles.todos}>
-            <TodoList items={defaultTodos} />
+            <div>
+                <div className={styles.btnContainer}>
+                    <Button text="Добавить"  onClick={addTodo}/>
+                </div>
+                <TodoList items={defaultTodos} />   
+            </div>
         </div>
     );
 }
