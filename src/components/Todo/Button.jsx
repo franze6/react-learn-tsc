@@ -1,18 +1,19 @@
-import styles from '../../assets/css/Button.module.css';
+import styles from '../../assets/sass/Button.module.sass';
 import PropTypes from 'prop-types';
 
-function Button({ text, onClick }) {
-    return <div className={styles.button} onClick={onClick}>{text}</div>
+function Button({text, onClick}) {
+  return <div className={styles.button} onClick={onClick}>{text}</div>
 }
 
 Button.propTypes = {
-    text: PropTypes.string,
-    onClick: PropTypes.func,
+  text: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 Button.defaultProps = {
-    text: '',
-    onClick: ()=> {},
+  text: '',
+  onClick: () => {
+  },
 }
 
 export default Button;
