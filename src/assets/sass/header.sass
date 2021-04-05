@@ -8,12 +8,17 @@
   height: 48px
   background-color: aqua
   border-bottom: 1px solid $border-color
+  display: flex
+  justify-content: flex-end
 
   &__info
-    float: right
     width: 240px
     background-color: aquamarine
     height: 100%
-
-    &:after
-      content: 'asdasdasdas'
+    display: flex
+    flex-direction: column
+    padding: 0 8px
+    &_completed
+      color: red
+    &_work
+      color: green

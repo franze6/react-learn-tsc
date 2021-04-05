@@ -14,7 +14,10 @@ function TodoItem({data, onClick, onDoubleClick}) {
   })
 
   return (
-    <div className={cn(styles.item, {[styles.completed]: completed})} onClick={onClick} onDoubleClick={onDoubleClick}>
+    <div
+      className={cn(styles.item, {[styles.completed]: completed})}
+      onClick={onClick}
+      onDoubleClick={onDoubleClick}>
       <div>{title}</div>
     </div>
   );
