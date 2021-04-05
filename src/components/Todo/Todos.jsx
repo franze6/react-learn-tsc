@@ -2,17 +2,17 @@ import TodoList from "./TodoList";
 import styles from '../../assets/css/Todos.module.css'
 import {nanoid} from 'nanoid';
 import Button from "./Button";
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, memo, useCallback } from 'react';
 import AppContext from "../../appContext";
 
-function Todos() {
+const Todos = memo(() => {
   const [todos, setTodos] = useState([]);
   const [, setAppData] = useContext(AppContext)
 
-  const addTodo = () => {
-    setTodos(
+  const addTodo = useCallback(() => {
+    setTodos( prev =>
       [
-        ...todos,
+        ...prev,
         {
           id: nanoid(),
           title: 'Новая задача',
@@ -20,17 +20,17 @@ function Todos() {
         }
       ]
     );
-  }
+  }, [setTodos])
 
-  const deleteTodo = (id) => {
+  const deleteTodo = useCallback((id) => {
     if(!id)
       return;
-    setTodos(
-      todos.filter(curr => curr.id !== id)
+    setTodos(prev =>
+      prev.filter(curr => curr.id !== id)
     );
-  }
+  }, [setTodos])
 
-  const toggleTodo = (id) => {
+  const toggleTodo = useCallback((id) => {
     if(!id)
       return;
     setTodos(prev =>
@@ -44,7 +44,7 @@ function Todos() {
         }
       })
     )
-  }
+  }, [setTodos])
 
   useEffect(() => {
     if (todos.length === 0)
@@ -80,6 +80,8 @@ function Todos() {
       </div>
     </div>
   );
-}
+})
+
+Todos.displayName = 'Todos';
 
 export default Todos;

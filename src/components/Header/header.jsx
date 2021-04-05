@@ -1,8 +1,8 @@
 import '../../assets/sass/header.sass'
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, memo } from 'react';
 import AppContext from "../../appContext";
 
-function Header({text, onClick}) {
+const Header = memo(({text, onClick}) => {
   const [appData] = useContext(AppContext);
 
 
@@ -21,6 +21,8 @@ function Header({text, onClick}) {
       </div>
     </div>
   );
-}
+})
+
+Header.displayName = 'Header';
 
 export default Header;

@@ -1,10 +1,10 @@
 import styles from '../../assets/css/TodoItem.module.css';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 
-function TodoItem({data, onClick, onDoubleClick}) {
-  const {title, completed} = data;
+const TodoItem = memo(({data, onClick, onDoubleClick}) => {
+  const {title, completed, id} = data;
 
   useEffect(() => {
     console.log('component mount');
@@ -16,12 +16,14 @@ function TodoItem({data, onClick, onDoubleClick}) {
   return (
     <div
       className={cn(styles.item, {[styles.completed]: completed})}
-      onClick={onClick}
-      onDoubleClick={onDoubleClick}>
+      onClick={() => onClick(id)}
+      onDoubleClick={() => onDoubleClick(id)}>
       <div>{title}</div>
     </div>
   );
-}
+})
+
+TodoItem.displayName = 'TodoItem';
 
 TodoItem.propTypes = {
   data: PropTypes.object.isRequired,
