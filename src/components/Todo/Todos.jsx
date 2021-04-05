@@ -2,33 +2,10 @@ import TodoList from "./TodoList";
 import styles from '../../assets/css/Todos.module.css'
 import {nanoid} from 'nanoid';
 import Button from "./Button";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Todos() {
-  const defaultTodos = [
-    {
-      id: nanoid(),
-      title: 'Задача 1',
-      completed: false,
-    },
-    {
-      id: nanoid(),
-      title: 'Задача 2',
-      completed: false,
-    },
-    {
-      id: nanoid(),
-      title: 'Задача 3',
-      completed: false,
-    },
-    {
-      id: nanoid(),
-      title: 'Задача 4',
-      completed: true,
-    },
-  ];
-
-  const [todos, setTodos] = useState(defaultTodos);
+  const [todos, setTodos] = useState([]);
 
   const addTodo = () => {
     setTodos(
@@ -66,6 +43,26 @@ function Todos() {
       })
     )
   }
+
+  useEffect(() => {
+    if(todos.length === 0)
+      return;
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos])
+
+  useEffect(() => {
+    const json = localStorage.getItem('todos');
+    if(!json)
+      return;
+
+    try {
+      const localTodos = JSON.parse(json);
+      setTodos(localTodos);
+    }
+    catch {
+      console.error('Ошибка при парсе JSON');
+    }
+  }, [])
 
   return (
     <div className={styles.todos}>
