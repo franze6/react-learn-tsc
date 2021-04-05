@@ -4,7 +4,8 @@
     border: 1px solid green;
     margin-bottom: 8px;
     min-width: 240px;
-    color: green
+    color: green;
+    user-select: none;
 }
 
 .completed {
